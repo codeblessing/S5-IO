@@ -1,0 +1,11 @@
+name: Build docs
+on:
+  - push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Build docs
+      run: echo "pass"
