@@ -7,5 +7,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Build docs
-      run: echo "pass"
+      - name: Build docs
+        run: echo "pass"
