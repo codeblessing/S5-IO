@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import pl.poznan.put.jsontools.logic.JsonValidator;
 
 import javax.validation.Valid;
 
@@ -21,6 +22,10 @@ public class JsonToolsController {
     public String get(@Valid @RequestBody JsonToolsRequest request) {
         logger.debug("Got request:");
         logger.debug(request.toString());
+
+        for (String json : request.data) {
+            JsonValidator.validate(json);
+        }
 
         return "Hello";
     }
