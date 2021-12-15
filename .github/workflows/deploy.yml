@@ -4,7 +4,6 @@ name: Deploy
 
 on:
   push:
-    branches: [ release ]
     tags:
       - '*'
   pull_request:
@@ -15,7 +14,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    if: ${{ github.ref == 'refs/heads/release' }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
