@@ -4,14 +4,17 @@ name: Deploy
 
 on:
   push:
-    branches: [release, main]
+    tags:
+      - '*'
   pull_request:
-    branches: [release, main]
+    branches: [ release ]
+    tags:
+      - '*'
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-
+    if: ${{ github.ref == 'refs/heads/release' }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -20,8 +23,15 @@ jobs:
           java-version: "11"
           distribution: "adopt"
           cache: maven
-      - name: Test with Maven
-        run: mvn -B test
 
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
+      - name: Build
+        run: mvn -B --update-snapshots verify
+
+      - name: Deploy release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "target/json-tools-*.jar"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: json-tools@${{ github.ref_name }}
+          commit: ${{ github.sha }}
+          tag: untagged
