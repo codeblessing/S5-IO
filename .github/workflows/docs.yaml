@@ -1,11 +1,27 @@
 name: Build docs
 on:
-  - push
+  push:
+    branches: [release, main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Setup git
+        run: git checkout -b docs
+
       - name: Build docs
-        run: echo "pass"
+        run: mvn javadoc:javadoc
+
+      - name: Tidy up the javadocs
+        id: tidy
+        uses: cicirello/javadoc-cleanup@v1
+        with:
+          path-to-root: target/site/apidocs
+
+      - name: Deploy docs
+        uses: JamesIves/github-pages-deploy-action@master
+        with:
+          branch: docs
+          folder: target/site/apidocs
