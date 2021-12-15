@@ -4,11 +4,11 @@ name: Deploy
 
 on:
   push:
-    branches: [release]
+    branches: [ release ]
     tags:
       - '*'
   pull_request:
-    branches: [release]
+    branches: [ release ]
     tags:
       - '*'
 
@@ -29,8 +29,8 @@ jobs:
         run: mvn -B --update-snapshots verify
 
       - name: Deploy release
-        uses: elgohr/Github-Release-Action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        uses: ncipollo/release-action@v1
         with:
-          args: json-tools@${{ github.ref_name }}
+          artifacts: "target/json-tools-*.jar"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: json-tools@${{ github.ref_name }}
