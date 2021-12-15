@@ -21,7 +21,7 @@ jobs:
           path-to-root: target/site/apidocs
 
       - name: Deploy docs
-        uses: JamesIves/github-pages-deploy-action@master
+        uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
           branch: docs
           folder: target/site/apidocs
