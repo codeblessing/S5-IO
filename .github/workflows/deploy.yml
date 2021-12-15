@@ -4,12 +4,16 @@ name: Deploy
 
 on:
   push:
-    branches: [release, main]
+    branches: [release]
+    tags:
+      - 'v*'
   pull_request:
-    branches: [release, main]
+    branches: [release]
+    tags:
+      - 'v*'
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,5 +27,9 @@ jobs:
       - name: Test with Maven
         run: mvn -B test
 
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
+      - name: Deploy release
+        uses: elgohr/Github-Release-Action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        with:
+          args: json-tools@${{ github.ref_name }}
