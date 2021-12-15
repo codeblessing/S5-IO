@@ -8,9 +8,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Setup git
-        run: git checkout -b docs
-
       - name: Build docs
         run: mvn javadoc:javadoc
 
