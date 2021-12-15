@@ -35,3 +35,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           name: json-tools@${{ github.ref_name }}
           commit: ${{ github.sha }}
+          tag: untagged
