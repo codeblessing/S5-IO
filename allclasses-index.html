@@ -30,6 +30,12 @@
     catch(err) {
     }
 //-->
+var data = {"i0":2,"i1":2,"i2":2,"i3":8,"i4":2,"i5":2,"i6":2};
+var tabs = {65535:["t0","All Classes"],2:["t2","Class Summary"],8:["t4","Exception Summary"]};
+var altColor = "altColor";
+var rowColor = "rowColor";
+var tableTab = "tableTab";
+var activeTableTab = "activeTableTab";
 var pathtoroot = "./";
 var useModuleDirectories = true;
 loadScripts(document, 'script');</script>
@@ -103,7 +109,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <table class="typeSummary">
-<caption><span>Class Summary</span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Classes</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Class Summary</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Exception Summary</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Class</th>
 <th class="colLast" scope="col">Description</th>
@@ -121,10 +127,20 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><a href="pl/poznan/put/jsontools/rest/JsonToolsRequest.html" title="class in pl.poznan.put.jsontools.rest">JsonToolsRequest</a></td>
+<td class="colFirst"><a href="pl/poznan/put/jsontools/error/JsonToolsInvalidJsonError.html" title="class in pl.poznan.put.jsontools.error">JsonToolsInvalidJsonError</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i4" class="altColor">
+<td class="colFirst"><a href="pl/poznan/put/jsontools/rest/JsonToolsRequest.html" title="class in pl.poznan.put.jsontools.rest">JsonToolsRequest</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><a href="pl/poznan/put/jsontools/logic/JsonValidator.html" title="class in pl.poznan.put.jsontools.logic">JsonValidator</a></td>
+<th class="colLast" scope="row">
+<div class="block">Validates JSON syntax.</div>
+</th>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><a href="pl/poznan/put/jsontools/logic/TextTransformer.html" title="class in pl.poznan.put.jsontools.logic">TextTransformer</a></td>
 <th class="colLast" scope="row">
 <div class="block">This is just an example to show that the logic should be outside the REST service.</div>

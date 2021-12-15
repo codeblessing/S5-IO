@@ -96,7 +96,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </nav>
 </header>
 <main role="main">
-<div class="contentContainer"><a href="#I:D">D</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a><a id="I:D">
+<div class="contentContainer"><a href="#I:D">D</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a><a id="I:D">
 <!--   -->
 </a>
 <h2 class="title">D</h2>
@@ -111,12 +111,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt><span class="memberNameLink"><a href="pl/poznan/put/jsontools/rest/JsonToolsController.html#get(pl.poznan.put.jsontools.rest.JsonToolsRequest)">get(JsonToolsRequest)</a></span> - Method in class pl.poznan.put.jsontools.rest.<a href="pl/poznan/put/jsontools/rest/JsonToolsController.html" title="class in pl.poznan.put.jsontools.rest">JsonToolsController</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="pl/poznan/put/jsontools/error/JsonToolsInvalidJsonError.html#getJson()">getJson()</a></span> - Method in exception pl.poznan.put.jsontools.error.<a href="pl/poznan/put/jsontools/error/JsonToolsInvalidJsonError.html" title="class in pl.poznan.put.jsontools.error">JsonToolsInvalidJsonError</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <a id="I:H">
 <!--   -->
 </a>
 <h2 class="title">H</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="pl/poznan/put/jsontools/error/JsonToolsExceptionHandler.html#handleInvalidJson(pl.poznan.put.jsontools.error.JsonToolsInvalidJsonError,org.springframework.web.context.request.WebRequest)">handleInvalidJson(JsonToolsInvalidJsonError, WebRequest)</a></span> - Method in class pl.poznan.put.jsontools.error.<a href="pl/poznan/put/jsontools/error/JsonToolsExceptionHandler.html" title="class in pl.poznan.put.jsontools.error">JsonToolsExceptionHandler</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="pl/poznan/put/jsontools/error/JsonToolsExceptionHandler.html#handleMethodArgumentNotValid(org.springframework.web.bind.MethodArgumentNotValidException,org.springframework.http.HttpHeaders,org.springframework.http.HttpStatus,org.springframework.web.context.request.WebRequest)">handleMethodArgumentNotValid(MethodArgumentNotValidException, HttpHeaders, HttpStatus, WebRequest)</a></span> - Method in class pl.poznan.put.jsontools.error.<a href="pl/poznan/put/jsontools/error/JsonToolsExceptionHandler.html" title="class in pl.poznan.put.jsontools.error">JsonToolsExceptionHandler</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -137,9 +141,21 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="pl/poznan/put/jsontools/error/JsonToolsExceptionHandler.html#%3Cinit%3E()">JsonToolsExceptionHandler()</a></span> - Constructor for class pl.poznan.put.jsontools.error.<a href="pl/poznan/put/jsontools/error/JsonToolsExceptionHandler.html" title="class in pl.poznan.put.jsontools.error">JsonToolsExceptionHandler</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="pl/poznan/put/jsontools/error/JsonToolsInvalidJsonError.html" title="class in pl.poznan.put.jsontools.error"><span class="typeNameLink">JsonToolsInvalidJsonError</span></a> - Exception in <a href="pl/poznan/put/jsontools/error/package-summary.html">pl.poznan.put.jsontools.error</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="pl/poznan/put/jsontools/error/JsonToolsInvalidJsonError.html#%3Cinit%3E()">JsonToolsInvalidJsonError()</a></span> - Constructor for exception pl.poznan.put.jsontools.error.<a href="pl/poznan/put/jsontools/error/JsonToolsInvalidJsonError.html" title="class in pl.poznan.put.jsontools.error">JsonToolsInvalidJsonError</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="pl/poznan/put/jsontools/error/JsonToolsInvalidJsonError.html#%3Cinit%3E(java.lang.String,java.lang.String)">JsonToolsInvalidJsonError(String, String)</a></span> - Constructor for exception pl.poznan.put.jsontools.error.<a href="pl/poznan/put/jsontools/error/JsonToolsInvalidJsonError.html" title="class in pl.poznan.put.jsontools.error">JsonToolsInvalidJsonError</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="pl/poznan/put/jsontools/rest/JsonToolsRequest.html" title="class in pl.poznan.put.jsontools.rest"><span class="typeNameLink">JsonToolsRequest</span></a> - Class in <a href="pl/poznan/put/jsontools/rest/package-summary.html">pl.poznan.put.jsontools.rest</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="pl/poznan/put/jsontools/rest/JsonToolsRequest.html#%3Cinit%3E()">JsonToolsRequest()</a></span> - Constructor for class pl.poznan.put.jsontools.rest.<a href="pl/poznan/put/jsontools/rest/JsonToolsRequest.html" title="class in pl.poznan.put.jsontools.rest">JsonToolsRequest</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="pl/poznan/put/jsontools/logic/JsonValidator.html" title="class in pl.poznan.put.jsontools.logic"><span class="typeNameLink">JsonValidator</span></a> - Class in <a href="pl/poznan/put/jsontools/logic/package-summary.html">pl.poznan.put.jsontools.logic</a></dt>
+<dd>
+<div class="block">Validates JSON syntax.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="pl/poznan/put/jsontools/logic/JsonValidator.html#%3Cinit%3E()">JsonValidator()</a></span> - Constructor for class pl.poznan.put.jsontools.logic.<a href="pl/poznan/put/jsontools/logic/JsonValidator.html" title="class in pl.poznan.put.jsontools.logic">JsonValidator</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <a id="I:M">
@@ -180,7 +196,15 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="pl/poznan/put/jsontools/rest/JsonToolsRequest.html#transforms">transforms</a></span> - Variable in class pl.poznan.put.jsontools.rest.<a href="pl/poznan/put/jsontools/rest/JsonToolsRequest.html" title="class in pl.poznan.put.jsontools.rest">JsonToolsRequest</a></dt>
 <dd>&nbsp;</dd>
 </dl>
-<a href="#I:D">D</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a></div>
+<a id="I:V">
+<!--   -->
+</a>
+<h2 class="title">V</h2>
+<dl>
+<dt><span class="memberNameLink"><a href="pl/poznan/put/jsontools/logic/JsonValidator.html#validate(java.lang.String)">validate(String)</a></span> - Static method in class pl.poznan.put.jsontools.logic.<a href="pl/poznan/put/jsontools/logic/JsonValidator.html" title="class in pl.poznan.put.jsontools.logic">JsonValidator</a></dt>
+<dd>&nbsp;</dd>
+</dl>
+<a href="#I:D">D</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a></div>
 </main>
 <footer role="contentinfo">
 <nav role="navigation">
