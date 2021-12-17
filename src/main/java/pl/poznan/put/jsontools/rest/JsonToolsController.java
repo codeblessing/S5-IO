@@ -22,8 +22,8 @@ import java.util.stream.Collectors;
 public class JsonToolsController {
     private static final Logger logger = LoggerFactory.getLogger(JsonToolsController.class);
 
-    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
-    public List<String> get(@Valid @RequestBody JsonToolsFullRequest request) {
+    @RequestMapping(method = RequestMethod.GET)
+    public String[] get(@Valid @RequestBody JsonToolsFullRequest request) {
         logger.debug("Got request:\n" + request.toString());
 
         logger.info("Processing transforms.");
@@ -49,7 +49,7 @@ public class JsonToolsController {
         }
 
         logger.info("Processing JSON data");
-        return request.data.parallelStream().map(transformer::execute).collect(Collectors.toList());
+        return request.data.parallelStream().map(transformer::execute).toArray(String[]::new);
     }
 
     @RequestMapping(value = "/remove-attributes", method = RequestMethod.POST, produces = "application/json")
