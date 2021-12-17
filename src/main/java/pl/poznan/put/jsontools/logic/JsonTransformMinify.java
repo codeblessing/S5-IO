@@ -1,9 +1,11 @@
 package pl.poznan.put.jsontools.logic;
 
 
-public class JsonTransformMinify implements JsonTransform {
+import com.fasterxml.jackson.databind.JsonNode;
+
+public class JsonTransformMinify implements JsonFinalTransform {
     @Override
-    public String execute(String json) {
+    public String execute(JsonNode json) {
         return null;
     }
 }

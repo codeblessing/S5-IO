@@ -1,5 +1,7 @@
 package pl.poznan.put.jsontools.logic;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import java.util.List;
 
 public class JsonTransformRetainAttributes implements JsonTransform {
@@ -10,7 +12,7 @@ public class JsonTransformRetainAttributes implements JsonTransform {
     }
 
     @Override
-    public String execute(String json) {
+    public JsonNode execute(JsonNode json) {
         return null;
     }
 }

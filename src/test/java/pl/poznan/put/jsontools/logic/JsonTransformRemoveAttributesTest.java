@@ -1,5 +1,8 @@
 package pl.poznan.put.jsontools.logic;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -9,25 +12,26 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class JsonTransformRemoveAttributesTest {
     @Test
-    public void testEmptyAttributes() {
-        String json = "{\"hello\":\"there\",\"general\":\"kenobi\"}";
+    public void testEmptyAttributes() throws JsonProcessingException {
+        JsonNode json = new ObjectMapper().readTree("{\"hello\":\"there\",\"general\":\"kenobi\"}");
         JsonTransformRemoveAttributes transform = new JsonTransformRemoveAttributes(new ArrayList<>());
 
         assertEquals(json, transform.execute(json));
     }
 
     @Test
-    public void testEmptyData() {
-        String json = "{}";
+    public void testEmptyData() throws JsonProcessingException {
+        JsonNode json = new ObjectMapper().readTree("{}");
         JsonTransformRemoveAttributes transform = new JsonTransformRemoveAttributes(Arrays.asList("wolves", "amidst"));
 
         assertEquals(json, transform.execute(json));
     }
 
     @Test
-    public void testRemoveAttributes() {
-        String json = "{\"remove\":\"data\",\"numeric\":5,\"array\":[\"garlic\",\"olive oil\",\"pepper\",\"salt\"],\"retain\":\"I'm alive\"}";
-        String expected = "{\"retain\":\"I'm alive\"}";
+    public void testRemoveAttributes() throws JsonProcessingException {
+    var mapper = new ObjectMapper();
+        JsonNode json = mapper.readTree("{\"remove\":\"data\",\"numeric\":5,\"array\":[\"garlic\",\"olive oil\",\"pepper\",\"salt\"],\"retain\":\"I'm alive\"}");
+        JsonNode expected = mapper.readTree("{\"retain\":\"I'm alive\"}");
 
         JsonTransformRemoveAttributes transform = new JsonTransformRemoveAttributes(Arrays.asList("remove", "numeric", "array"));
 
@@ -35,9 +39,10 @@ class JsonTransformRemoveAttributesTest {
     }
 
     @Test
-    public void testRetainOrder() {
-        String json = "{\"wolves\":\"asleep\",\"numeric\":5,\"array\":[\"garlic\",\"olive oil\",\"pepper\",\"salt\"],\"retain\":\"I'm alive\"}";
-        String expected = "{\"wolves\":\"asleep\",\"retain\":\"I'm alive\"}";
+    public void testRetainOrder() throws JsonProcessingException {
+        var mapper = new ObjectMapper();
+        JsonNode json = mapper.readTree("{\"wolves\":\"asleep\",\"numeric\":5,\"array\":[\"garlic\",\"olive oil\",\"pepper\",\"salt\"],\"retain\":\"I'm alive\"}");
+        JsonNode expected = mapper.readTree("{\"wolves\":\"asleep\",\"retain\":\"I'm alive\"}");
 
         JsonTransformRemoveAttributes transform = new JsonTransformRemoveAttributes(Arrays.asList("numeric", "array"));
 

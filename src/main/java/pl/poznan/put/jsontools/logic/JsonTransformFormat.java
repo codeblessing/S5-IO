@@ -1,8 +1,10 @@
 package pl.poznan.put.jsontools.logic;
 
-public class JsonTransformFormat implements JsonTransform {
+import com.fasterxml.jackson.databind.JsonNode;
+
+public class JsonTransformFormat implements JsonFinalTransform {
     @Override
-    public String execute(String json) {
+    public String execute(JsonNode json) {
         return null;
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 public class JsonToolsFullRequest {
     @NotNull(message = "transforms has to be non-empty")
     @NotEmpty
-    public List<JsonNode> transforms;
+    public List<JsonToolsRequestTransform> transforms;
     @NotNull(message = "data has to be non-empty")
     @NotEmpty
     public List<JsonNode> data;
