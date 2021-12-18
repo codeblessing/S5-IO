@@ -142,6 +142,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <pre>public class <span class="typeNameLabel">JsonTransformFormat</span>
 extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>
 implements <a href="JsonFinalTransform.html" title="interface in pl.poznan.put.jsontools.logic">JsonFinalTransform</a></pre>
+<div class="block">Class enables to transform minified JSON file into JSON full form</div>
 </li>
 </ul>
 </div>
@@ -241,6 +242,10 @@ implements <a href="JsonFinalTransform.html" title="interface in pl.poznan.put.j
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="JsonFinalTransform.html#execute(com.fasterxml.jackson.databind.JsonNode)">execute</a></code>&nbsp;in interface&nbsp;<code><a href="JsonFinalTransform.html" title="interface in pl.poznan.put.jsontools.logic">JsonFinalTransform</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>json</code> - minified JSON file</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>String prettified file (with proper formatting, e.g. spaces, tabs, newlines)</dd>
 </dl>
 </li>
 </ul>
