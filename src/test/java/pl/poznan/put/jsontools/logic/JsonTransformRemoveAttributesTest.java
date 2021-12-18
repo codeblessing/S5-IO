@@ -38,14 +38,5 @@ class JsonTransformRemoveAttributesTest {
         assertEquals(expected, transform.execute(json));
     }
 
-    @Test
-    public void testRetainOrder() throws JsonProcessingException {
-        var mapper = new ObjectMapper();
-        JsonNode json = mapper.readTree("{\"wolves\":\"asleep\",\"numeric\":5,\"array\":[\"garlic\",\"olive oil\",\"pepper\",\"salt\"],\"retain\":\"I'm alive\"}");
-        JsonNode expected = mapper.readTree("{\"wolves\":\"asleep\",\"retain\":\"I'm alive\"}");
 
-        JsonTransformRemoveAttributes transform = new JsonTransformRemoveAttributes(Arrays.asList("numeric", "array"));
-
-        assertEquals(expected, transform.execute(json));
-    }
 }

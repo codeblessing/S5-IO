@@ -25,13 +25,12 @@ public class JsonTransformRetainAttributes implements JsonTransform {
      */
     @Override
     public JsonNode execute(JsonNode json) {
-        List<String> jsonAttributes = new ArrayList<>();
+        List<String> jsonattributes = new ArrayList<>();
         Iterator<String> NameIterator = json.fieldNames();
         while(NameIterator.hasNext()) {
-            String fieldName = NameIterator.next();
-            jsonAttributes.add(fieldName);
+            jsonattributes.add(NameIterator.next());
         }
-        for(String attribute: jsonAttributes){
+        for(String attribute: jsonattributes){
             if(!this._attributes.contains(attribute)){
                 ((ObjectNode)json).remove(attribute);
             }
