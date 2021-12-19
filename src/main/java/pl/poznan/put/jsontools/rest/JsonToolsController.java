@@ -52,7 +52,8 @@ public class JsonToolsController {
         logger.info("Processing JSON data");
         return request.data.parallelStream()
                 .map(transformer::execute)
-                .collect(Collectors.joining(","));
+                .collect(Collectors.joining(",\n\t")) +
+                "\n]";
     }
 
     @RequestMapping(value = "/remove-attributes", method = RequestMethod.POST, produces = "application/json")
