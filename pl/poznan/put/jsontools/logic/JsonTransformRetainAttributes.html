@@ -191,7 +191,9 @@ extends <a href="JsonTransformer.html" title="class in pl.poznan.put.jsontools.l
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#execute()">execute</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">It retains given attributes.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -225,6 +227,11 @@ extends <a href="JsonTransformer.html" title="class in pl.poznan.put.jsontools.l
 <h4>JsonTransformRetainAttributes</h4>
 <pre>public&nbsp;JsonTransformRetainAttributes&#8203;(<a href="JsonTransform.html" title="interface in pl.poznan.put.jsontools.logic">JsonTransform</a>&nbsp;transform,
                                      <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&gt;&nbsp;attributes)</pre>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>transform</code> - transform to be executed before attributes will be save.</dd>
+<dd><code>attributes</code> - attributes to be saved from JSON.</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -244,11 +251,14 @@ extends <a href="JsonTransformer.html" title="class in pl.poznan.put.jsontools.l
 <li class="blockList">
 <h4>execute</h4>
 <pre class="methodSignature">public&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;execute()</pre>
+<div class="block">It retains given attributes.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="JsonTransform.html#execute()">execute</a></code>&nbsp;in interface&nbsp;<code><a href="JsonTransform.html" title="interface in pl.poznan.put.jsontools.logic">JsonTransform</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="JsonTransformer.html#execute()">execute</a></code>&nbsp;in class&nbsp;<code><a href="JsonTransformer.html" title="class in pl.poznan.put.jsontools.logic">JsonTransformer</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>JSON containing only attributes specified by  attributes</dd>
 </dl>
 </li>
 </ul>
