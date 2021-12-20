@@ -40,7 +40,7 @@ public class JsonTransformRetainAttributes extends JsonTransformer{
 
     /**
      * It retains given attributes.
-     * @return  JSON containing only attributes specified by  {@link #_attributes}
+     * @return  JSON containing only attributes specified by  attributes
      */
     @Override
     public String execute() {
