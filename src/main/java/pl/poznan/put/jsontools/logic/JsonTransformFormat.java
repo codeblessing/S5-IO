@@ -27,11 +27,6 @@ public class JsonTransformFormat implements JsonFinalTransform {
     @Override
     public String execute(JsonNode json) {
 
-        try {
-            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(json);
-        } catch (JsonProcessingException e) {
-            logger.error("Could not deminify JSON!", e);
-            return null;
-        }
+        return json.toPrettyString();
     }
 }
