@@ -16,20 +16,30 @@ import java.util.List;
 
 public class JsonTransformRetainAttributes extends JsonTransformer{
 
-
+    /**
+     * Attributes to save from JSON.
+     */
     private final List<String> _attributes;
-
+    /**
+     * Class-level logger instance.
+     */
     private static final Logger _logger = LoggerFactory.getLogger(JsonTransformRetainAttributes.class);
+    
 
-
-
+    /**
+     * @param transform transform to be executed before attributes will be save.
+     * @param attributes attributes to be saved from JSON.
+     */
     public JsonTransformRetainAttributes(JsonTransform transform, List<String> attributes) {
         super(transform);
         this._attributes = attributes;
         _logger.debug("RetainAttributes transform created.");
     }
 
-
+    /**
+     * It retains given attributes.
+     * @return  JSON containing only attributes specified by  attributes
+     */
     @Override
     public String execute() {
         String json = super.execute();
