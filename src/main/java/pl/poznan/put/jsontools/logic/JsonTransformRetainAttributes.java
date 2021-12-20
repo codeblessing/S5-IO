@@ -4,15 +4,16 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import java.util.List;
 
-public class JsonTransformRetainAttributes implements JsonTransform {
+public class JsonTransformRetainAttributes extends JsonTransformer{
     private final List<String> _attributes;
 
-    public JsonTransformRetainAttributes(List<String> attributes) {
+    public JsonTransformRetainAttributes(JsonTransform transform, List<String> attributes) {
+        super(transform);
         this._attributes = attributes;
     }
 
     @Override
-    public JsonNode execute(JsonNode json) {
+    public String execute() {
         return null;
     }
 }
