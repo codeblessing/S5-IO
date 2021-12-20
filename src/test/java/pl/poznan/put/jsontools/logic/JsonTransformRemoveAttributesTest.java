@@ -1,51 +1,47 @@
 package pl.poznan.put.jsontools.logic;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class JsonTransformRemoveAttributesTest {
     @Test
-    public void testEmptyAttributes() throws JsonProcessingException {
-        JsonNode json = new ObjectMapper().readTree("{\"hello\":\"there\",\"general\":\"kenobi\"}");
-        JsonTransformRemoveAttributes transform = new JsonTransformRemoveAttributes(new ArrayList<>());
+    public void testEmptyAttributes() {
+        var json = "{\"hello\":\"there\",\"general\":\"kenobi\"}";
+        var transform = new JsonTransformRemoveAttributes(new JsonBase(json), new ArrayList<>());
 
-        assertEquals(json, transform.execute(json));
+        assertEquals(json, transform.execute());
     }
 
     @Test
-    public void testEmptyData() throws JsonProcessingException {
-        JsonNode json = new ObjectMapper().readTree("{}");
-        JsonTransformRemoveAttributes transform = new JsonTransformRemoveAttributes(Arrays.asList("wolves", "amidst"));
+    public void testEmptyData() {
+        var json = "{}";
+        var transform = new JsonTransformRemoveAttributes(new JsonBase(json), Arrays.asList("wolves", "amidst"));
 
-        assertEquals(json, transform.execute(json));
+        assertEquals(json, transform.execute());
     }
 
     @Test
-    public void testRemoveAttributes() throws JsonProcessingException {
-    var mapper = new ObjectMapper();
-        JsonNode json = mapper.readTree("{\"remove\":\"data\",\"numeric\":5,\"array\":[\"garlic\",\"olive oil\",\"pepper\",\"salt\"],\"retain\":\"I'm alive\"}");
-        JsonNode expected = mapper.readTree("{\"retain\":\"I'm alive\"}");
+    public void testRemoveAttributes() {
+        var json = "{\"remove\":\"data\",\"numeric\":5,\"array\":[\"garlic\",\"olive oil\",\"pepper\",\"salt\"],\"retain\":\"I'm alive\"}";
+        var expected = "{\"retain\":\"I'm alive\"}";
 
-        JsonTransformRemoveAttributes transform = new JsonTransformRemoveAttributes(Arrays.asList("remove", "numeric", "array"));
+        var transform = new JsonTransformRemoveAttributes(new JsonBase(json), Arrays.asList("remove", "numeric", "array"));
 
-        assertEquals(expected, transform.execute(json));
+        assertEquals(expected, transform.execute());
     }
 
     @Test
-    public void testRetainOrder() throws JsonProcessingException {
-        var mapper = new ObjectMapper();
-        JsonNode json = mapper.readTree("{\"wolves\":\"asleep\",\"numeric\":5,\"array\":[\"garlic\",\"olive oil\",\"pepper\",\"salt\"],\"retain\":\"I'm alive\"}");
-        JsonNode expected = mapper.readTree("{\"wolves\":\"asleep\",\"retain\":\"I'm alive\"}");
+    public void testRetainOrder() {
+        var json = "{\"wolves\":\"asleep\",\"numeric\":5,\"array\":[\"garlic\",\"olive oil\",\"pepper\",\"salt\"],\"retain\":\"I'm alive\"}";
+        var expected = "{\"wolves\":\"asleep\",\"retain\":\"I'm alive\"}";
 
-        JsonTransformRemoveAttributes transform = new JsonTransformRemoveAttributes(Arrays.asList("numeric", "array"));
+        var transform = new JsonTransformRemoveAttributes(new JsonBase(json), Arrays.asList("numeric", "array"));
 
-        assertEquals(expected, transform.execute(json));
+        assertEquals(expected, transform.execute());
     }
 }
