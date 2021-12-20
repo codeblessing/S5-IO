@@ -16,7 +16,7 @@ public class JsonTransformFormat extends JsonTransformer {
     private static final ObjectMapper mapper = new ObjectMapper();
 
     /**
-     * @param json minified JSON file
+     *
      * @return String prettified file (with proper formatting, e.g. spaces, tabs, newlines)
      */
     @Override
@@ -28,5 +28,6 @@ public class JsonTransformFormat extends JsonTransformer {
         }
 
         return null;
+    }
 
 }
