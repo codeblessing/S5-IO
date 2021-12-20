@@ -1,6 +1,7 @@
 package pl.poznan.put.jsontools.logic;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonTransformFormat extends JsonTransformer {
@@ -17,5 +18,7 @@ public class JsonTransformFormat extends JsonTransformer {
         }
 
         return null;
+
+
     }
 }
