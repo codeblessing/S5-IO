@@ -46,19 +46,19 @@ public class JsonTransformRetainAttributes extends JsonTransformer{
         _logger.debug("Executing saving attributes");
         try {
             ObjectMapper mapper = new ObjectMapper();
-            JsonNode jsonnode = mapper.readTree(json);
-            List<String> jsonattributes = new ArrayList<>();
-            Iterator<String> NameIterator = jsonnode.fieldNames();
+            JsonNode jsonNode = mapper.readTree(json);
+            List<String> jsonAttributes = new ArrayList<>();
+            Iterator<String> NameIterator = jsonNode.fieldNames();
             while(NameIterator.hasNext()) {
-                jsonattributes.add(NameIterator.next());
+                jsonAttributes.add(NameIterator.next());
             }
-            for(String attribute: jsonattributes){
+            for(String attribute: jsonAttributes){
                 if(!this._attributes.contains(attribute)){
-                    ((ObjectNode)jsonnode).remove(attribute);
+                    ((ObjectNode)jsonNode).remove(attribute);
                 }
             }
 
-            return mapper.convertValue(jsonnode, JsonNode.class).toString();
+            return mapper.convertValue(jsonNode, JsonNode.class).toString();
         }
         catch (JsonProcessingException e) {
             throw new JsonToolsInvalidJsonError("Invalid JSON", json);
