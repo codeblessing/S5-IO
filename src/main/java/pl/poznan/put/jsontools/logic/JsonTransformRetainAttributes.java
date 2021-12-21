@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-
+/**
+ * Class enables to get JSON containing only certain properties.
+ */
 public class JsonTransformRetainAttributes extends JsonTransformer{
 
     /**
@@ -48,17 +50,15 @@ public class JsonTransformRetainAttributes extends JsonTransformer{
             ObjectMapper mapper = new ObjectMapper();
             JsonNode jsonNode = mapper.readTree(json);
             List<String> jsonAttributes = new ArrayList<>();
-            Iterator<String> NameIterator = jsonNode.fieldNames();
-            while(NameIterator.hasNext()) {
-                jsonAttributes.add(NameIterator.next());
-            }
+            jsonNode.fieldNames().forEachRemaining(jsonAttributes::add);
+
             for(String attribute: jsonAttributes){
                 if(!this._attributes.contains(attribute)){
                     ((ObjectNode)jsonNode).remove(attribute);
                 }
             }
 
-            return mapper.convertValue(jsonNode, JsonNode.class).toString();
+            return jsonNode.toString();
         }
         catch (JsonProcessingException e) {
             throw new JsonToolsInvalidJsonError("Invalid JSON", json);
