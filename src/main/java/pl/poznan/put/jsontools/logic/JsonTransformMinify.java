@@ -15,7 +15,7 @@ public class JsonTransformMinify extends JsonTransformer {
         try {
             return mapper.readTree(super.execute()).toString();
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            throw new JsonToolsInvalidJsonError(e.getMessage);
         }
 
         return null;
