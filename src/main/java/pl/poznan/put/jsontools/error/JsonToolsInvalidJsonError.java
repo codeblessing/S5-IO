@@ -8,6 +8,11 @@ public class JsonToolsInvalidJsonError extends RuntimeException {
         this._json = "";
     }
 
+    public JsonToolsInvalidJsonError(String msg) {
+        super(msg);
+        this._json = "";
+    }
+
     public JsonToolsInvalidJsonError(String message, String json) {
         super(message);
         this._json = json;
