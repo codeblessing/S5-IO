@@ -61,7 +61,7 @@ public class JsonTransformRetainAttributes extends JsonTransformer{
             return jsonNode.toString();
         }
         catch (JsonProcessingException e) {
-            throw new JsonToolsInvalidJsonError("Invalid JSON", json);
+            throw new JsonToolsInvalidJsonError(e.getLocation().toString(), json);
         }
     }
 }

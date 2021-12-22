@@ -65,7 +65,7 @@ public class JsonTransformRemoveAttributes extends JsonTransformer {
 
         } catch (JsonProcessingException e) {
             _logger.error("Invalid JSON:\n" + preprocessed);
-            throw new JsonToolsInvalidJsonError("Invalid JSON", preprocessed);
+            throw new JsonToolsInvalidJsonError(e.getLocation().toString(), preprocessed);
         }
     }
 }

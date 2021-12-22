@@ -14,6 +14,7 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Validated
 @RestController
@@ -24,6 +25,7 @@ public class JsonToolsController {
 
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     public String get(@Valid @RequestBody JsonToolsFullRequest request) {
+
         _logger.debug("Got request:\n" + request.toString());
         _logger.info("Processing transforms.");
 
@@ -63,20 +65,41 @@ public class JsonToolsController {
                         _logger.warn("No such transform: " + tform.name);
                         break;
                 }
+
             }
             altered.add(transform.execute());
         }
+
 
         if (altered.size() == 1) {
             return altered.get(0);
         } else {
             return "[\n\t" + altered.stream().map(str -> str.replace("\n", "\n\t")).collect(Collectors.joining(",\n\t")) + "\n]";
         }
+
     }
 
-    @RequestMapping(value = "/remove-attributes", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/remove-attributes", method = RequestMethod.GET, produces = "application/json")
     public String removeAttributes(@Validated @RequestBody JsonToolsSingleRequest request) {
         var transform = new JsonTransformRemoveAttributes(new JsonBase(request.data.toString()), request.attributes);
+        return transform.execute();
+    }
+
+    @RequestMapping(value = "/retain-attributes", method = RequestMethod.GET, produces = "application/json")
+    public String retainAttributes(@Validated @RequestBody JsonToolsSingleRequest request) {
+        var transform = new JsonTransformRetainAttributes(new JsonBase(request.data.toString()), request.attributes);
+        return transform.execute();
+    }
+
+    @RequestMapping(value = "/minify", method = RequestMethod.GET, produces = "application/json")
+    public String minify(@Validated @RequestBody JsonToolsSingleRequest request) {
+        var transform = new JsonTransformMinify(new JsonBase(request.data.toString()));
+        return transform.execute();
+    }
+
+    @RequestMapping(value = "/format", method = RequestMethod.GET, produces = "application/json")
+    public String format(@Validated @RequestBody JsonToolsSingleRequest request) {
+        var transform = new JsonTransformFormat(new JsonBase(request.data.toString()));
         return transform.execute();
     }
 }
