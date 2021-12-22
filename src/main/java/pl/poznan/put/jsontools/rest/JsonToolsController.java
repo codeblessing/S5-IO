@@ -79,9 +79,27 @@ public class JsonToolsController {
 
     }
 
-    @RequestMapping(value = "/remove-attributes", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/remove-attributes", method = RequestMethod.GET, produces = "application/json")
     public String removeAttributes(@Validated @RequestBody JsonToolsSingleRequest request) {
         var transform = new JsonTransformRemoveAttributes(new JsonBase(request.data.toString()), request.attributes);
+        return transform.execute();
+    }
+
+    @RequestMapping(value = "/retain-attributes", method = RequestMethod.GET, produces = "application/json")
+    public String retainAttributes(@Validated @RequestBody JsonToolsSingleRequest request) {
+        var transform = new JsonTransformRetainAttributes(new JsonBase(request.data.toString()), request.attributes);
+        return transform.execute();
+    }
+
+    @RequestMapping(value = "/minify", method = RequestMethod.GET, produces = "application/json")
+    public String minify(@Validated @RequestBody JsonToolsSingleRequest request) {
+        var transform = new JsonTransformMinify(new JsonBase(request.data.toString()));
+        return transform.execute();
+    }
+
+    @RequestMapping(value = "/format", method = RequestMethod.GET, produces = "application/json")
+    public String format(@Validated @RequestBody JsonToolsSingleRequest request) {
+        var transform = new JsonTransformFormat(new JsonBase(request.data.toString()));
         return transform.execute();
     }
 }
