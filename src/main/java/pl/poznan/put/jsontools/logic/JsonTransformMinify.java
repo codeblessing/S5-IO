@@ -4,6 +4,7 @@ package pl.poznan.put.jsontools.logic;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import pl.poznan.put.jsontools.error.JsonToolsInvalidJsonError;
 
 public class JsonTransformMinify extends JsonTransformer {
     public JsonTransformMinify(JsonTransform transform) {
