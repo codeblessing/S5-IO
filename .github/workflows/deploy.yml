@@ -30,4 +30,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           name: json-tools@${{ github.ref_name }}
           commit: release
-          tag: ${{ github.ref_name }}
+          tag: ${{ github.ref_name + github.run_id }}
