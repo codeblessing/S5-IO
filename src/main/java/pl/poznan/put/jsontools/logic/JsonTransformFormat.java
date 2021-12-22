@@ -3,6 +3,8 @@ package pl.poznan.put.jsontools.logic;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import pl.poznan.put.jsontools.error.JsonToolsInvalidJsonError;
+
 /**
  * Class enables to transform minified JSON file into JSON full form
  */
@@ -24,10 +26,8 @@ public class JsonTransformFormat extends JsonTransformer {
         try {
             return mapper.readTree(super.execute()).toPrettyString();
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            throw new JsonToolsInvalidJsonError(e.getMessage());
         }
-
-        return null;
     }
 
 }
