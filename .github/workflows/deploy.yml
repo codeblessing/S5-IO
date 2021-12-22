@@ -29,5 +29,5 @@ jobs:
           artifacts: "target/json-tools-*.jar"
           token: ${{ secrets.GITHUB_TOKEN }}
           name: json-tools@${{ github.ref_name }}
-          commit: ${{ github.sha }}
+          commit: release
           tag: untagged
