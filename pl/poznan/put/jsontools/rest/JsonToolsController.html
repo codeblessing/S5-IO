@@ -30,7 +30,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -183,12 +183,27 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#get(pl.poznan.put.jsontools.rest.JsonToolsFullRequest)">get</a></span>&#8203;(@Valid <a href="JsonToolsFullRequest.html" title="class in pl.poznan.put.jsontools.rest">JsonToolsFullRequest</a>&nbsp;request)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#format(pl.poznan.put.jsontools.rest.JsonToolsSingleRequest)">format</a></span>&#8203;(<a href="JsonToolsSingleRequest.html" title="class in pl.poznan.put.jsontools.rest">JsonToolsSingleRequest</a>&nbsp;request)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#get(pl.poznan.put.jsontools.rest.JsonToolsFullRequest)">get</a></span>&#8203;(@Valid <a href="JsonToolsFullRequest.html" title="class in pl.poznan.put.jsontools.rest">JsonToolsFullRequest</a>&nbsp;request)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#minify(pl.poznan.put.jsontools.rest.JsonToolsSingleRequest)">minify</a></span>&#8203;(<a href="JsonToolsSingleRequest.html" title="class in pl.poznan.put.jsontools.rest">JsonToolsSingleRequest</a>&nbsp;request)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeAttributes(pl.poznan.put.jsontools.rest.JsonToolsSingleRequest)">removeAttributes</a></span>&#8203;(<a href="JsonToolsSingleRequest.html" title="class in pl.poznan.put.jsontools.rest">JsonToolsSingleRequest</a>&nbsp;request)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#retainAttributes(pl.poznan.put.jsontools.rest.JsonToolsSingleRequest)">retainAttributes</a></span>&#8203;(<a href="JsonToolsSingleRequest.html" title="class in pl.poznan.put.jsontools.rest">JsonToolsSingleRequest</a>&nbsp;request)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -249,14 +264,53 @@ public&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.bas
 <a id="removeAttributes(pl.poznan.put.jsontools.rest.JsonToolsSingleRequest)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>removeAttributes</h4>
 <pre class="methodSignature">@RequestMapping(value="/remove-attributes",
-                method=POST,
+                method=GET,
                 produces="application/json")
 public&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;removeAttributes&#8203;(@Validated @RequestBody
                                <a href="JsonToolsSingleRequest.html" title="class in pl.poznan.put.jsontools.rest">JsonToolsSingleRequest</a>&nbsp;request)</pre>
+</li>
+</ul>
+<a id="retainAttributes(pl.poznan.put.jsontools.rest.JsonToolsSingleRequest)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>retainAttributes</h4>
+<pre class="methodSignature">@RequestMapping(value="/retain-attributes",
+                method=GET,
+                produces="application/json")
+public&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;retainAttributes&#8203;(@Validated @RequestBody
+                               <a href="JsonToolsSingleRequest.html" title="class in pl.poznan.put.jsontools.rest">JsonToolsSingleRequest</a>&nbsp;request)</pre>
+</li>
+</ul>
+<a id="minify(pl.poznan.put.jsontools.rest.JsonToolsSingleRequest)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>minify</h4>
+<pre class="methodSignature">@RequestMapping(value="/minify",
+                method=GET,
+                produces="application/json")
+public&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;minify&#8203;(@Validated @RequestBody
+                     <a href="JsonToolsSingleRequest.html" title="class in pl.poznan.put.jsontools.rest">JsonToolsSingleRequest</a>&nbsp;request)</pre>
+</li>
+</ul>
+<a id="format(pl.poznan.put.jsontools.rest.JsonToolsSingleRequest)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>format</h4>
+<pre class="methodSignature">@RequestMapping(value="/format",
+                method=GET,
+                produces="application/json")
+public&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;format&#8203;(@Validated @RequestBody
+                     <a href="JsonToolsSingleRequest.html" title="class in pl.poznan.put.jsontools.rest">JsonToolsSingleRequest</a>&nbsp;request)</pre>
 </li>
 </ul>
 </li>
