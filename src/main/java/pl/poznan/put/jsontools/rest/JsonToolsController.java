@@ -61,6 +61,10 @@ public class JsonToolsController {
                         _logger.debug("Format transform added");
                         transform = new JsonTransformFormat(baseTransform);
                         baseTransform = transform;
+                    case "flatten":
+                        _logger.debug("Flatten transform added");
+                        transform = new JsonTransformFlatten(baseTransform);
+                        baseTransform = transform;
                     default:
                         _logger.warn("No such transform: " + tform.name);
                         break;
