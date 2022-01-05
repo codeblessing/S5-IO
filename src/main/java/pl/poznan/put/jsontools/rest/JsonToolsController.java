@@ -94,6 +94,11 @@ public class JsonToolsController {
         var transform = new JsonTransformRetainAttributes(new JsonBase(request.data.toString()), request.attributes);
         return transform.execute();
     }
+    @RequestMapping(value = "/flatten", method = RequestMethod.GET, produces = "application/json")
+    public String flatten(@Validated @RequestBody JsonToolsSingleRequest request) {
+        var transform = new JsonTransformFlatten(new JsonBase(request.data.toString()));
+        return transform.execute();
+    }
 
     @RequestMapping(value = "/minify", method = RequestMethod.GET, produces = "application/json")
     public String minify(@Validated @RequestBody JsonToolsSingleRequest request) {
