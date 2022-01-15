@@ -65,6 +65,7 @@ public class JsonToolsController {
                         _logger.debug("Flatten transform added");
                         transform = new JsonTransformFlatten(baseTransform);
                         baseTransform = transform;
+                        break;
                     default:
                         _logger.warn("No such transform: " + tform.name);
                         break;
@@ -111,6 +112,7 @@ public class JsonToolsController {
         var transform = new JsonTransformFormat(new JsonBase(request.data.toString()));
         return transform.execute();
     }
+
 }
 
 

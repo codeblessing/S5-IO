@@ -20,7 +20,7 @@ public class JsonTransformFlatten extends JsonTransformer{
     /**
      * Class-level logger instance.
      */
-    private static final Logger _logger = LoggerFactory.getLogger(JsonTransformRetainAttributes.class);
+    private static final Logger _logger = LoggerFactory.getLogger(JsonTransformFlatten.class);
 
 
     /**
@@ -33,7 +33,7 @@ public class JsonTransformFlatten extends JsonTransformer{
 
     /**
      *  flatten json.
-     * @return  JSON has been flattened recursively
+     *  @return recursively flattened JSON
      */
     @Override
     public String execute() {
@@ -60,9 +60,16 @@ public class JsonTransformFlatten extends JsonTransformer{
             for(String attribute: jsonAttributes){
                 JsonNode fieldValue = root.get(attribute);
                 if(fieldValue.isObject() || fieldValue.isArray()){
-                    flattenNodes(fieldValue, flattenJson, nestedName + attribute);
+                    if(nestedName.equals(""))
+                        flattenNodes(fieldValue, flattenJson, nestedName + attribute);
+                    else
+                        flattenNodes(fieldValue, flattenJson, nestedName + "."+ attribute);
                 }else{
-                    ((ObjectNode) flattenJson).set(nestedName + attribute, fieldValue);
+                    if(nestedName.equals(""))
+                        ((ObjectNode) flattenJson).set(nestedName + attribute, fieldValue);
+                    else
+                        ((ObjectNode) flattenJson).set(nestedName + "." + attribute, fieldValue);
+
                 }
             }
         }else if(root.isArray()){
