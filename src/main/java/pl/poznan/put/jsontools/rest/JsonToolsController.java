@@ -31,13 +31,6 @@ public class JsonToolsController {
 
         List<String> altered = new ArrayList<>();
         for (var json : request.data) {
-//            try {
-//                _mapper.readTree(json);
-//            } catch (JsonProcessingException e) {
-//                _logger.error("Invalid JSON:\n" + json);
-//                throw new JsonToolsInvalidJsonError(e.getLocation().toString(), json);
-//            }
-
             JsonTransform transform = new JsonBase(json.toString());
             JsonTransform baseTransform = transform;
             for (var tform : request.transforms) {
@@ -61,6 +54,11 @@ public class JsonToolsController {
                         _logger.debug("Format transform added");
                         transform = new JsonTransformFormat(baseTransform);
                         baseTransform = transform;
+                    case "sort":
+                        _logger.debug("Sort transform added");
+                        transform = new JsonTransformSortFields(baseTransform);
+                        baseTransform = transform;
+                        break;
                     default:
                         _logger.warn("No such transform: " + tform.name);
                         break;
@@ -100,6 +98,12 @@ public class JsonToolsController {
     @RequestMapping(value = "/format", method = RequestMethod.GET, produces = "application/json")
     public String format(@Validated @RequestBody JsonToolsSingleRequest request) {
         var transform = new JsonTransformFormat(new JsonBase(request.data.toString()));
+        return transform.execute();
+    }
+
+    @RequestMapping(value = "/sort", method = RequestMethod.GET, produces = "application/json")
+    public String sortAttributes(@Validated @RequestBody JsonToolsSingleRequest request) {
+        var transform = new JsonTransformSortFields(new JsonBase(request.data.toString()));
         return transform.execute();
     }
 }
