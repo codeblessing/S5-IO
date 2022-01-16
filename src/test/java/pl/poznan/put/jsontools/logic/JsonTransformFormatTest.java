@@ -9,7 +9,7 @@ public class JsonTransformFormatTest {
     public void testEmptyFile() {
         String input = "{}";
         JsonTransformFormat transform = new JsonTransformFormat(new JsonBase(input));
-        String expected = "{}";
+        String expected = "{ }";
 
         assertEquals(expected, transform.execute());
     }
