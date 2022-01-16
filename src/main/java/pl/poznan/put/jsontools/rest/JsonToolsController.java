@@ -59,6 +59,11 @@ public class JsonToolsController {
                         transform = new JsonTransformSortFields(baseTransform);
                         baseTransform = transform;
                         break;
+                    case "count":
+                        _logger.debug("Count transform added");
+                        transform = new JsonTransformCountFieldsValues(baseTransform);
+                        baseTransform = transform;
+                        break;
                     default:
                         _logger.warn("No such transform: " + tform.name);
                         break;
@@ -72,7 +77,9 @@ public class JsonToolsController {
         if (altered.size() == 1) {
             return altered.get(0);
         } else {
-            return "[\n\t" + altered.stream().map(str -> str.replace("\n", "\n\t")).collect(Collectors.joining(",\n\t")) + "\n]";
+            return "[\n\t" + altered.stream()
+                    .map(str -> str.replace("\n", "\n\t"))
+                    .collect(Collectors.joining(",\n\t")) + "\n]";
         }
 
     }
@@ -104,6 +111,12 @@ public class JsonToolsController {
     @RequestMapping(value = "/sort", method = RequestMethod.GET, produces = "application/json")
     public String sortAttributes(@Validated @RequestBody JsonToolsSingleRequest request) {
         var transform = new JsonTransformSortFields(new JsonBase(request.data.toString()));
+        return transform.execute();
+    }
+
+    @RequestMapping(value = "/count", method = RequestMethod.GET, produces = "application/json")
+    public String countFieldsValues(@Validated @RequestBody JsonToolsSingleRequest request) {
+        var transform = new JsonTransformCountFieldsValues(new JsonBase(request.data.toString()));
         return transform.execute();
     }
 }
