@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Class enables to get  flattened JSON
  */
-public class JsonTransformFlatten extends JsonTransformer{
+public class JsonTransformFlatten extends JsonTransformer {
 
     /**
      * Class-level logger instance.
@@ -32,8 +32,9 @@ public class JsonTransformFlatten extends JsonTransformer{
     }
 
     /**
-     *  flatten json.
-     *  @return recursively flattened JSON
+     * flatten json.
+     *
+     * @return recursively flattened JSON
      */
     @Override
     public String execute() {
@@ -47,37 +48,37 @@ public class JsonTransformFlatten extends JsonTransformer{
             flattenNodes(jsonNode, flattenJsonNode, "");
 
             return flattenJsonNode.toString();
-        }
-        catch (JsonProcessingException e) {
+        } catch (JsonProcessingException e) {
             throw new JsonToolsInvalidJsonError(e.getLocation().toString(), json);
         }
     }
-    private void flattenNodes(JsonNode root, JsonNode flattenJson, String nestedName){
-        if(root.isObject()){
+
+    private void flattenNodes(JsonNode root, JsonNode flattenJson, String nestedName) {
+        if (root.isObject()) {
             List<String> jsonAttributes = new ArrayList<>();
             root.fieldNames().forEachRemaining(jsonAttributes::add);
 
-            for(String attribute: jsonAttributes){
+            for (String attribute : jsonAttributes) {
                 JsonNode fieldValue = root.get(attribute);
-                if(fieldValue.isObject() || fieldValue.isArray()){
-                    if(nestedName.equals(""))
+                if (fieldValue.isObject() || fieldValue.isArray()) {
+                    if (nestedName.equals(""))
                         flattenNodes(fieldValue, flattenJson, nestedName + attribute);
                     else
-                        flattenNodes(fieldValue, flattenJson, nestedName + "."+ attribute);
-                }else{
-                    if(nestedName.equals(""))
+                        flattenNodes(fieldValue, flattenJson, nestedName + "." + attribute);
+                } else {
+                    if (nestedName.equals(""))
                         ((ObjectNode) flattenJson).set(nestedName + attribute, fieldValue);
                     else
                         ((ObjectNode) flattenJson).set(nestedName + "." + attribute, fieldValue);
 
                 }
             }
-        }else if(root.isArray()){
-            Integer i=0;
-            for(JsonNode fieldValue: (ArrayNode) root){
-                if(fieldValue.isObject() || fieldValue.isArray()){
+        } else if (root.isArray()) {
+            Integer i = 0;
+            for (JsonNode fieldValue : root) {
+                if (fieldValue.isObject() || fieldValue.isArray()) {
                     flattenNodes(fieldValue, flattenJson, nestedName + (++i).toString());
-                }else{
+                } else {
                     ((ObjectNode) flattenJson).set(nestedName + (++i).toString(), fieldValue);
                 }
             }
