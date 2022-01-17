@@ -12,13 +12,13 @@ public class JsonTransformFormat extends JsonTransformer {
     public JsonTransformFormat(JsonTransform transform) {
         super(transform);
     }
+
     /**
      * ObjectMapper to apply formatting to the JSON file
      */
     private static final ObjectMapper mapper = new ObjectMapper();
 
     /**
-     *
      * @return String prettified file (with proper formatting, e.g. spaces, tabs, newlines)
      */
     @Override
