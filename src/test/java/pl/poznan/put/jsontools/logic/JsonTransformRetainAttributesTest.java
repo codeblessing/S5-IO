@@ -27,7 +27,7 @@ class JsonTransformRetainAttributesTest {
     }
 
     @Test
-    public void testRetainAttributes(){
+    public void testRetainAttributes1(){
         String json = "{\"remove\":\"data\",\"numeric\":5,\"array\":[\"garlic\",\"olive oil\",\"pepper\",\"salt\"],\"retain\":\"I'm alive\"}";
         JsonTransformRetainAttributes transform = new JsonTransformRetainAttributes(new JsonBase(json),Arrays.asList("retain", "numeric"));
 

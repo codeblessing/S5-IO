@@ -54,6 +54,12 @@ public class JsonToolsController {
                         _logger.debug("Format transform added");
                         transform = new JsonTransformFormat(baseTransform);
                         baseTransform = transform;
+
+                    case "flatten":
+                        _logger.debug("Flatten transform added");
+                        transform = new JsonTransformFlatten(baseTransform);
+                        baseTransform = transform;
+                        break;
                     case "sort":
                         _logger.debug("Sort transform added");
                         transform = new JsonTransformSortFields(baseTransform);
@@ -95,6 +101,11 @@ public class JsonToolsController {
         var transform = new JsonTransformRetainAttributes(new JsonBase(request.data.toString()), request.attributes);
         return transform.execute();
     }
+    @RequestMapping(value = "/flatten", method = RequestMethod.GET, produces = "application/json")
+    public String flatten(@Validated @RequestBody JsonToolsSingleRequest request) {
+        var transform = new JsonTransformFlatten(new JsonBase(request.data.toString()));
+        return transform.execute();
+    }
 
     @RequestMapping(value = "/minify", method = RequestMethod.GET, produces = "application/json")
     public String minify(@Validated @RequestBody JsonToolsSingleRequest request) {
@@ -108,6 +119,8 @@ public class JsonToolsController {
         return transform.execute();
     }
 
+
+
     @RequestMapping(value = "/sort", method = RequestMethod.GET, produces = "application/json")
     public String sortAttributes(@Validated @RequestBody JsonToolsSingleRequest request) {
         var transform = new JsonTransformSortFields(new JsonBase(request.data.toString()));
@@ -119,6 +132,7 @@ public class JsonToolsController {
         var transform = new JsonTransformCountFieldsValues(new JsonBase(request.data.toString()));
         return transform.execute();
     }
+  
 }
 
 
