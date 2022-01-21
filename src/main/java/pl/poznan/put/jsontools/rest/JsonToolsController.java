@@ -51,7 +51,7 @@ public class JsonToolsController {
 
     @RequestMapping(value = "/minify", method = RequestMethod.GET, produces = "application/json")
     public String minify(@Validated @RequestBody JsonToolsSingleRequest request) {
-        return transformService.flatten(request);
+        return transformService.minify(request);
     }
 
 

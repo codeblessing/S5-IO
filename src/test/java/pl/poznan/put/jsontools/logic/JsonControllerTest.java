@@ -12,6 +12,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import pl.poznan.put.jsontools.rest.JsonToolsController;
 import pl.poznan.put.jsontools.rest.JsonToolsFullRequest;
 import pl.poznan.put.jsontools.rest.JsonToolsRequestTransform;
+import pl.poznan.put.jsontools.rest.JsonToolsSingleRequest;
 
 import java.util.List;
 
@@ -32,8 +33,7 @@ public class JsonControllerTest {
     public void basicTransformTest() throws JsonProcessingException {
         jsonToolsController.get(createJsonToolsFullRequest());
 
-
-        verify(jsonTransformService, times(2)).transform(
+        verify(jsonTransformService, times(1)).transform(
                 any()
         );
 
@@ -41,7 +41,6 @@ public class JsonControllerTest {
 
     @Test
     public void checkOrderTest() {
-
         JsonBase jsonBase = spy(new JsonBase(""));
         JsonTransformSortFields jsonTransformSortFields = spy(new JsonTransformSortFields(jsonBase));
         JsonTransformFormat jsonTransformFormat = spy(new JsonTransformFormat(jsonTransformSortFields));
@@ -53,6 +52,14 @@ public class JsonControllerTest {
         inOrder.verify(jsonBase).execute();
 
     }
+
+
+
+
+
+
+
+
 
     public JsonToolsFullRequest createJsonToolsFullRequest() throws JsonProcessingException {
 
@@ -70,6 +77,19 @@ public class JsonControllerTest {
         jsonToolsFullRequest.transforms = List.of(jsonToolsRequestTransform);
 
         return jsonToolsFullRequest;
+    }
+
+    public JsonToolsSingleRequest createJsonToolsSingleRequest() throws JsonProcessingException {
+
+        JsonToolsSingleRequest jsonToolsSingleRequest = new JsonToolsSingleRequest();
+
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode jsonNode = mapper.readTree("{\"random\":28,\"regEx\":\"hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo to you\"}");
+
+        jsonToolsSingleRequest.attributes = List.of();
+        jsonToolsSingleRequest.data = jsonNode;
+
+        return jsonToolsSingleRequest;
     }
 
 

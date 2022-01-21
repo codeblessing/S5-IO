@@ -30,7 +30,7 @@ class JsonTransformCountFieldsValuesTest {
     }
 
     @Test
-    public void testNodeValuesCount(){
+    public void testNodeValuesCount() {
         String json = "{\"random\":28,\"random float\":90.398,\"bool\":true,\"date\":\"1995-04-18\",\"regEx\":\"hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo to you\"}";
         String expected = "{\"random\":\"1 value in node\",\"random float\":\"1 value in node\",\"bool\":\"1 value in node\",\"date\":\"1 value in node\",\"regEx\":\"1 value in node\"}";
 
