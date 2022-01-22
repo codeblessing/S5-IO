@@ -14,7 +14,6 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Validated
 @RestController
@@ -68,6 +67,11 @@ public class JsonToolsController {
                     case "count":
                         _logger.debug("Count transform added");
                         transform = new JsonTransformCountFieldsValues(baseTransform);
+                        baseTransform = transform;
+                        break;
+                    case "delete-nulls":
+                        _logger.debug("DeleteNulls transform added");
+                        transform = new JsonTransformDeleteNulls(baseTransform);
                         baseTransform = transform;
                         break;
                     default:
@@ -130,6 +134,12 @@ public class JsonToolsController {
     @RequestMapping(value = "/count", method = RequestMethod.GET, produces = "application/json")
     public String countFieldsValues(@Validated @RequestBody JsonToolsSingleRequest request) {
         var transform = new JsonTransformCountFieldsValues(new JsonBase(request.data.toString()));
+        return transform.execute();
+    }
+
+    @RequestMapping(value = "/delete-nulls", method = RequestMethod.GET, produces = "application/json")
+    public String deleteNulls(@Validated @RequestBody JsonToolsSingleRequest request) {
+        var transform = new JsonTransformDeleteNulls(new JsonBase(request.data.toString()));
         return transform.execute();
     }
   
