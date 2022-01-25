@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * RemoveAttributes decorator.
- *
+ * <p>
  * Removes plain attributes given in constructor from JSON retrieved from `transform`.
  * Does not remove nested attributes.
  */
@@ -44,6 +44,7 @@ public class JsonTransformRemoveAttributes extends JsonTransformer {
 
     /**
      * Removes given attributes from JSON.
+     *
      * @return Transformed JSON.
      */
     @Override

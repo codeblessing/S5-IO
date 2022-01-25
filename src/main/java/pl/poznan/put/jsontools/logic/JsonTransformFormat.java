@@ -11,7 +11,15 @@ import pl.poznan.put.jsontools.error.JsonToolsInvalidJsonError;
  * Class enables to transform minified JSON file into JSON full form
  */
 public class JsonTransformFormat extends JsonTransformer {
+
+    /**
+     * Class-level logger instance.
+     */
     private static final Logger _logger = LoggerFactory.getLogger(JsonTransformFormat.class);
+
+    /**
+     * @param transform to be executed before JSON formatting.
+     */
     public JsonTransformFormat(JsonTransform transform) {
         super(transform);
         _logger.info("Format transform created.");
@@ -27,9 +35,11 @@ public class JsonTransformFormat extends JsonTransformer {
      */
     @Override
     public String execute() {
+        _logger.debug("Executing formatting.");
         try {
             return mapper.readTree(super.execute()).toPrettyString();
         } catch (JsonProcessingException e) {
+            _logger.error("Invalid JSON:\n" + super.execute());
             throw new JsonToolsInvalidJsonError(e.getMessage());
         }
     }

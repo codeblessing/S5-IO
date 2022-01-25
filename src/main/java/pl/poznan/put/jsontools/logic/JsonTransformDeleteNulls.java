@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import pl.poznan.put.jsontools.error.JsonToolsInvalidJsonError;
 
 /**
- * Class enables to get JSON with no empty fields
+ * Class enables to get JSON with no empty fields.
  */
 public class JsonTransformDeleteNulls extends JsonTransformer {
 
@@ -18,11 +18,19 @@ public class JsonTransformDeleteNulls extends JsonTransformer {
      */
     private static final Logger _logger = LoggerFactory.getLogger(JsonTransformDeleteNulls.class);
 
+    /**
+     * @param transform transform to be executed before empty values removal.
+     */
     public JsonTransformDeleteNulls(JsonTransform transform) {
         super(transform);
         _logger.debug("DeleteNulls transform created.");
     }
 
+    /**
+     * Removes attributes with empty values.
+     *
+     * @return Transformed JSON.
+     */
     @Override
     public String execute() {
         String input = super.execute();
@@ -32,8 +40,7 @@ public class JsonTransformDeleteNulls extends JsonTransformer {
             JsonObject jsonObject = new Gson().fromJson(json, JsonObject.class);
             Gson gson = new GsonBuilder().create();
             return gson.toJson(jsonObject);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new JsonToolsInvalidJsonError(e.getMessage());
         }
     }
