@@ -11,19 +11,31 @@ import pl.poznan.put.jsontools.error.JsonToolsInvalidJsonError;
 import java.util.*;
 
 /**
- * Counts values in JSON nodes.
+ * Counts values in JSON file nodes.
  */
-
-
 public class JsonTransformCountFieldsValues extends JsonTransformer {
+    /**
+     * Class-level logger instance.
+     */
     private static final Logger logger = LoggerFactory.getLogger(JsonTransformCountFieldsValues.class);
+    /**
+     * Object mapper to retrieve JSON structure from string.
+     */
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
+    /**
+     * @param transform transform to be executed before flatten JSON.
+     */
     public JsonTransformCountFieldsValues(JsonTransform transform) {
         super(transform);
         logger.info("CountFieldsValues transform created.");
     }
 
+    /**
+     * Counts values in JSON file fields and determines their type.
+     *
+     * @return Transformed JSON.
+     */
     @Override
     public String execute() {
         String json = super.execute();
@@ -39,6 +51,16 @@ public class JsonTransformCountFieldsValues extends JsonTransformer {
         }
     }
 
+    /**
+     * Provides number of values for each JSON file attribute.
+     * Checks whether the value is:
+     * - object,
+     * - array,
+     * - text.
+     *
+     * @param jsonNode JsonNode to be transformed.
+     * @return JSON with counted values per node in form of Jackson's ObjectNode.
+     */
     private JsonNode count(JsonNode jsonNode) {
 
         List<Map.Entry<String, JsonNode>> fields = new ArrayList<>();

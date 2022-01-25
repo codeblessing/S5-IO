@@ -111,6 +111,14 @@ public class JsonControllerTest {
     }
 
     @Test
+    public void invocationDeleteNullFieldsValuesTest() throws JsonProcessingException {
+        jsonToolsController.deleteNulls(createJsonToolsSingleRequest());
+        verify(jsonTransformService, times(1)).deleteNulls(
+                any()
+        );
+    }
+
+    @Test
     public void invocationNeverCountFieldsValuesTest() throws JsonProcessingException {
         jsonToolsController.sortAttributes(createJsonToolsSingleRequest());
         verify(jsonTransformService, never()).countFieldsValues(
@@ -120,7 +128,8 @@ public class JsonControllerTest {
 
     @Test
     public void throwJsonProcessingExceptionTest() throws JsonProcessingException {
-        doThrow(JsonToolsInvalidJsonError.class).when(jsonTransformService).sortAttributes(createJsonToolsSingleRequest());
+        doThrow(JsonToolsInvalidJsonError.class).when(jsonTransformService)
+                .sortAttributes(createJsonToolsSingleRequest());
     }
 
 
@@ -154,5 +163,5 @@ public class JsonControllerTest {
 
         return jsonToolsSingleRequest;
     }
-    
+
 }
