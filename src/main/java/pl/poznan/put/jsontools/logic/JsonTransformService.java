@@ -45,7 +45,6 @@ public class JsonTransformService {
                         transform = new JsonTransformFormat(baseTransform);
                         baseTransform = transform;
                         break;
-
                     case "flatten":
                         _logger.debug("Flatten transform added");
                         transform = new JsonTransformFlatten(baseTransform);
@@ -59,6 +58,11 @@ public class JsonTransformService {
                     case "count":
                         _logger.debug("Count transform added");
                         transform = new JsonTransformCountFieldsValues(baseTransform);
+                        baseTransform = transform;
+                        break;
+                    case "delete-nulls":
+                        _logger.debug("Delete nulls transform added");
+                        transform = new JsonTransformDeleteNulls(baseTransform);
                         baseTransform = transform;
                         break;
                     default:
@@ -112,6 +116,11 @@ public class JsonTransformService {
 
     public String countFieldsValues(JsonToolsSingleRequest request) {
         var transform = new JsonTransformCountFieldsValues(new JsonBase(request.data.toString()));
+        return transform.execute();
+    }
+
+    public String deleteNulls(JsonToolsSingleRequest request) {
+        var transform = new JsonTransformDeleteNulls(new JsonBase(request.data.toString()));
         return transform.execute();
     }
 

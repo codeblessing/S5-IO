@@ -8,6 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.poznan.put.jsontools.error.JsonToolsInvalidJsonError;
 
+/**
+ * Class enables to get JSON with no empty fields
+ */
 public class JsonTransformDeleteNulls extends JsonTransformer {
 
     /**
