@@ -1,6 +1,5 @@
 package pl.poznan.put.jsontools.rest;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.annotation.Validated;
@@ -20,11 +19,15 @@ import java.util.stream.Collectors;
 @RequestMapping("/api")
 public class JsonToolsController {
     private static final Logger _logger = LoggerFactory.getLogger(JsonToolsController.class);
-    private static final ObjectMapper _mapper = new ObjectMapper();
+
+    private final JsonTransformService transformService;
+
+    public JsonToolsController(JsonTransformService transformService) {
+        this.transformService = transformService;
+    }
 
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     public String get(@Valid @RequestBody JsonToolsFullRequest request) {
-
         _logger.debug("Got request:\n" + request.toString());
         _logger.info("Processing transforms.");
 
@@ -92,49 +95,49 @@ public class JsonToolsController {
                     .collect(Collectors.joining(",\n\t")) + "\n]";
         }
 
+        return transformService.transform(request);
     }
+
 
     @RequestMapping(value = "/remove-attributes", method = RequestMethod.GET, produces = "application/json")
     public String removeAttributes(@Validated @RequestBody JsonToolsSingleRequest request) {
-        var transform = new JsonTransformRemoveAttributes(new JsonBase(request.data.toString()), request.attributes);
-        return transform.execute();
+        return transformService.removeAttributes(request);
     }
+
 
     @RequestMapping(value = "/retain-attributes", method = RequestMethod.GET, produces = "application/json")
     public String retainAttributes(@Validated @RequestBody JsonToolsSingleRequest request) {
-        var transform = new JsonTransformRetainAttributes(new JsonBase(request.data.toString()), request.attributes);
-        return transform.execute();
+        return transformService.retainAttributes(request);
     }
+
+
     @RequestMapping(value = "/flatten", method = RequestMethod.GET, produces = "application/json")
     public String flatten(@Validated @RequestBody JsonToolsSingleRequest request) {
-        var transform = new JsonTransformFlatten(new JsonBase(request.data.toString()));
-        return transform.execute();
+        return transformService.flatten(request);
     }
+
 
     @RequestMapping(value = "/minify", method = RequestMethod.GET, produces = "application/json")
     public String minify(@Validated @RequestBody JsonToolsSingleRequest request) {
-        var transform = new JsonTransformMinify(new JsonBase(request.data.toString()));
-        return transform.execute();
+        return transformService.minify(request);
     }
+
 
     @RequestMapping(value = "/format", method = RequestMethod.GET, produces = "application/json")
     public String format(@Validated @RequestBody JsonToolsSingleRequest request) {
-        var transform = new JsonTransformFormat(new JsonBase(request.data.toString()));
-        return transform.execute();
+        return transformService.format(request);
     }
-
 
 
     @RequestMapping(value = "/sort", method = RequestMethod.GET, produces = "application/json")
     public String sortAttributes(@Validated @RequestBody JsonToolsSingleRequest request) {
-        var transform = new JsonTransformSortFields(new JsonBase(request.data.toString()));
-        return transform.execute();
+        return transformService.sortAttributes(request);
     }
+
 
     @RequestMapping(value = "/count", method = RequestMethod.GET, produces = "application/json")
     public String countFieldsValues(@Validated @RequestBody JsonToolsSingleRequest request) {
-        var transform = new JsonTransformCountFieldsValues(new JsonBase(request.data.toString()));
-        return transform.execute();
+        return transformService.countFieldsValues(request);
     }
 
     @RequestMapping(value = "/delete-nulls", method = RequestMethod.GET, produces = "application/json")
