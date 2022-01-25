@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class enables to get  flattened JSON
+ * Class enables to get flattened JSON
  */
 public class JsonTransformFlatten extends JsonTransformer {
 
