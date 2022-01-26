@@ -14,7 +14,9 @@
     <groupId>pl.poznan.put</groupId>
     <artifactId>json-tools</artifactId>
 
-    <version>0.7.20220121</version>
+
+    <version>1.7.20220125</version>
+
 
 
 	<properties>
