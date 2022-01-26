@@ -4,9 +4,6 @@ name: Deploy
 
 on:
   push:
-    tags:
-      - '*'
-  pull_request:
     branches: [ release ]
     tags:
       - '*'
@@ -14,7 +11,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/release' }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -33,5 +29,5 @@ jobs:
           artifacts: "target/json-tools-*.jar"
           token: ${{ secrets.GITHUB_TOKEN }}
           name: json-tools@${{ github.ref_name }}
-          commit: ${{ github.sha }}
-          tag: untagged
+          commit: release
+          tag: ${{ github.ref_name }}
