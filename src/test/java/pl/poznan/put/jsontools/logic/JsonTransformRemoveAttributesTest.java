@@ -1,6 +1,5 @@
 package pl.poznan.put.jsontools.logic;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
